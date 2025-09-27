@@ -79,11 +79,6 @@
             box-shadow: 0 0 25px rgba(255, 193, 7, 0.4);
         }
         
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.2);
-        }
-        
         /* Section dividers */
         .section-divider {
             height: 1px;
@@ -147,6 +142,60 @@
             border-radius: 14px;
             z-index: -1;
             opacity: 0.7;
+        }
+        
+        /* Phone frame styles */
+        .phone-frame {
+            max-width: 360px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 0 0 12px #333, 0 0 0 14px #000, 0 10px 50px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background: #1a1a1a;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+        
+        .phone-content {
+            background: #102a43;
+            border-radius: 30px;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px 15px;
+            position: relative;
+        }
+        
+        /* Hide phone frame on desktop */
+        @media (min-width: 768px) {
+            .phone-frame {
+                display: none;
+            }
+        }
+        
+        /* Show regular content on desktop */
+        @media (min-width: 768px) {
+            .desktop-content {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .desktop-content {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -423,8 +472,8 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 gradient-bg-reverse relative">
+    <!-- Projects Section - Desktop View -->
+    <section id="projects" class="py-16 gradient-bg-reverse relative desktop-content">
         <div class="section-divider"></div>
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">Featured Projects</h2>
@@ -434,7 +483,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                <div class="gradient-border rounded-xl overflow-hidden shadow-md">
                     <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
                         <div class="w-full h-full bg-navy-700 flex items-center justify-center">
                             <span class="text-4xl text-gold-300"><i class="fas fa-building"></i></span>
@@ -471,7 +520,7 @@
                 </div>
                 
                 <!-- Project 2 -->
-                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                <div class="gradient-border rounded-xl overflow-hidden shadow-md">
                     <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
                         <div class="w-full h-full bg-navy-700 flex items-center justify-center">
                             <span class="text-4xl text-gold-300"><i class="fas fa-graduation-cap"></i></span>
@@ -509,7 +558,7 @@
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                <div class="gradient-border rounded-xl overflow-hidden shadow-md">
                     <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
                         <div class="w-full h-full bg-navy-700 flex items-center justify-center">
                             <span class="text-4xl text-gold-300"><i class="fas fa-shopping-cart"></i></span>
@@ -537,6 +586,139 @@
                                 <a href="#" class="text-slate-400 hover:text-gold-400 transition-colors">
                                     <i class="fab fa-github"></i>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-gold-400 hover:text-gold-300 transition-colors">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Mobile View -->
+    <section id="projects-mobile" class="py-16 gradient-bg-reverse relative md:hidden">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">Featured Projects</h2>
+            <p class="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+               A showcase of my recent projects.
+            </p>
+            
+            <!-- Phone Frame -->
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-content">
+                    <!-- Project 1 -->
+                    <div class="gradient-border rounded-xl overflow-hidden shadow-md mb-6">
+                        <div class="h-40 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                            <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                                <span class="text-4xl text-gold-300"><i class="fas fa-building"></i></span>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">Website</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2 text-slate-100">GB Construction Company Limited</h3>
+                            <p class="text-slate-400 mb-4 text-xs">
+                                A professional construction company website highlighting completed projects, offered services, and company profile.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">HTML</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">CSS</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">JavaScript</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-gold-400 text-xs font-medium hover:text-gold-300 transition-colors flex items-center">
+                                    View Details
+                                    <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="flex space-x-2">
+                                    <a href="https://github.com/jncb14/mywebsite" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://gbclimited.netlify.app/" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="gradient-border rounded-xl overflow-hidden shadow-md mb-6">
+                        <div class="h-40 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                            <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                                <span class="text-4xl text-gold-300"><i class="fas fa-graduation-cap"></i></span>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">System</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2 text-slate-100">Inquiry Management with Enrollment System</h3>
+                            <p class="text-slate-400 mb-4 text-xs">
+                                A system for handling student inquiries and enrollment processes.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">HTML</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">C#</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">CSS</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">JavaScript</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-gold-400 text-xs font-medium hover:text-gold-300 transition-colors flex items-center">
+                                    View Details
+                                    <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="flex space-x-2">
+                                    <a href="https://github.com/jncb14/InquiryManagementApp2" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="gradient-border rounded-xl overflow-hidden shadow-md">
+                        <div class="h-40 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                            <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                                <span class="text-4xl text-gold-300"><i class="fas fa-shopping-cart"></i></span>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2 text-slate-100">Website for small business</h3>
+                            <p class="text-slate-400 mb-4 text-xs">
+                                An upcoming website.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">React</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">Node.js</span>
+                                <span class="bg-gold-900/30 text-gold-400 text-xs px-2 py-1 rounded-full border border-gold-500/30">MongoDB</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-gold-400 text-xs font-medium hover:text-gold-300 transition-colors flex items-center">
+                                    Coming Soon
+                                    <i class="fas fa-clock ml-1 text-xs"></i>
+                                </a>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
