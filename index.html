@@ -71,9 +71,12 @@
         }
         
         /* Card hover effects */
+        .skill-card {
+            transition: all 0.3s ease;
+        }
+        
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
+            box-shadow: 0 0 25px rgba(255, 193, 7, 0.4);
         }
         
         .project-card:hover {
@@ -144,18 +147,6 @@
             border-radius: 14px;
             z-index: -1;
             opacity: 0.7;
-        }
-        
-        /* Gold shimmer effect */
-        .gold-shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
         }
     </style>
 </head>
@@ -360,7 +351,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Programming Card -->
-                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm">
                     <div class="text-gold-400 mb-4 flex justify-between items-center">
                         <i class="fas fa-code text-3xl"></i>
                         <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
@@ -378,7 +369,7 @@
                 </div>
                 
                 <!-- Web Development Card -->
-                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm">
                     <div class="text-gold-400 mb-4 flex justify-between items-center">
                         <i class="fas fa-laptop-code text-3xl"></i>
                         <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
@@ -396,7 +387,7 @@
                 </div>
                 
                 <!-- Database Management Card -->
-                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm">
                     <div class="text-gold-400 mb-4 flex justify-between items-center">
                         <i class="fas fa-database text-3xl"></i>
                         <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
@@ -413,7 +404,7 @@
                 </div>
                 
                 <!-- Other Skills Card -->
-                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm">
                     <div class="text-gold-400 mb-4 flex justify-between items-center">
                         <i class="fas fa-tools text-3xl"></i>
                         <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
