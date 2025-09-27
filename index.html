@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JNB - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43',
+                        },
+                        gold: {
+                            50: '#fff8e1',
+                            100: '#ffecb3',
+                            200: '#ffe082',
+                            300: '#ffd54f',
+                            400: '#ffca28',
+                            500: '#ffc107',
+                            600: '#ffb300',
+                            700: '#ffa000',
+                            800: '#ff8f00',
+                            900: '#ff6f00',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #102a43;
+            color: #f0f4f8;
+        }
+        
+        /* Custom animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(90deg, #ffc107, #ffd54f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Card hover effects */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.15);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.2);
+        }
+        
+        /* Section dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffc107, transparent);
+            margin: 4rem auto;
+            width: 80%;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #102a43;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ffc107, #ffd54f);
+            border-radius: 4px;
+        }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        
+        /* Glow effects */
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+        }
+        
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+        }
+        
+        /* Gradient backgrounds */
+        .gradient-bg {
+            background: linear-gradient(135deg, #102a43 0%, #243b53 100%);
+        }
+        
+        .gradient-bg-reverse {
+            background: linear-gradient(135deg, #243b53 0%, #102a43 100%);
+        }
+        
+        /* Animated gradient border */
+        .gradient-border {
+            position: relative;
+            background: #243b53;
+            border-radius: 12px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffc107, #ffd54f, #ffc107);
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        /* Gold shimmer effect */
+        .gold-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100">
+    <!-- Navigation -->
+    <nav class="bg-navy-800/90 backdrop-blur-md shadow-lg fixed w-full top-0 z-50 border-b border-navy-700/50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <!-- Enhanced Logo -->
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center glow">
+                            <span class="text-navy-900 font-bold text-lg">J</span>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold-400 border-2 border-navy-900"></div>
+                    </div>
+                    <div class="text-xl font-bold gradient-text">JNCB</div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="relative group hover:text-gold-400 transition-colors">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="relative group hover:text-gold-400 transition-colors">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="relative group hover:text-gold-400 transition-colors">
+                        Skills
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="relative group hover:text-gold-400 transition-colors">
+                        Projects
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="relative group hover:text-gold-400 transition-colors">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all group-hover:w-full"></span>
+                    </a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-navy-800/95 backdrop-blur-md hidden">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="py-2 hover:text-gold-400 transition-colors border-b border-navy-700/50">Home</a>
+                <a href="#about" class="py-2 hover:text-gold-400 transition-colors border-b border-navy-700/50">About</a>
+                <a href="#skills" class="py-2 hover:text-gold-400 transition-colors border-b border-navy-700/50">Skills</a>
+                <a href="#projects" class="py-2 hover:text-gold-400 transition-colors border-b border-navy-700/50">Projects</a>
+                <a href="#contact" class="py-2 hover:text-gold-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gold-500 blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-gold-600 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="inline-block px-4 py-1 rounded-full bg-gold-900/30 text-gold-400 border border-gold-500/30 mb-4">
+                        <span class="text-sm font-medium">BSIT Graduate</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                        Hi, I'm <span class="gradient-text">Joshua Nicole</span>
+                    </h1>
+                    <p class="text-xl text-slate-300 mb-6 max-w-lg">
+                        Passionate IT Graduate creating solutions through code and creativity
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 px-6 py-3 rounded-lg shadow-lg hover:from-gold-600 hover:to-gold-700 transition-all flex items-center justify-center glow">
+                            <span>Connect With Me</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#projects" class="border border-gold-400 text-gold-400 px-6 py-3 rounded-lg hover:bg-gold-900/20 transition-all flex items-center justify-center">
+                            <span>View Projects</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 mt-8">
+                        <a href="https://github.com/jncb14" class="w-10 h-10 rounded-full bg-navy-700 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://x.com/bazingga_i" class="w-10 h-10 rounded-full bg-navy-700 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/bazingga.fami/" class="w-10 h-10 rounded-full bg-navy-700 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-72 h-72 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full overflow-hidden shadow-2xl floating glow-gold">
+                            <!-- Profile image placeholder -->
+                            <div class="w-full h-full bg-navy-800 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-gold-300">JN</span>
+                            </div>
+                        </div>
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-gold-400/20 blur-xl"></div>
+                        <div class="absolute -bottom-4 -left-4 w-32 h-32 rounded-full bg-gold-500/20 blur-xl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 gradient-bg-reverse relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">About Me</h2>
+            <p class="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+                Get to know more about my background, education, and passion for technology
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="gradient-border p-8 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-6 text-gold-400 flex items-center">
+                        <i class="fas fa-user-circle mr-3"></i> Personal Details
+                    </h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="flex justify-between py-3 border-b border-navy-600/50">
+                            <span class="font-medium text-slate-400">Full Name:</span>
+                            <span class="text-slate-200">Joshua Nicole C. Baron</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-navy-600/50">
+                            <span class="font-medium text-slate-400">Age:</span>
+                            <span class="text-slate-200">23 years old</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-navy-600/50">
+                            <span class="font-medium text-slate-400">Birthday:</span>
+                            <span class="text-slate-200">November 14, 2001</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-navy-600/50">
+                            <span class="font-medium text-slate-400">Education:</span>
+                            <span class="text-slate-200">BS in Information Technology</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-navy-600/50">
+                            <span class="font-medium text-slate-400">Year Graduated:</span>
+                            <span class="text-slate-200">2025</span>
+                        </div>
+                        <div class="flex justify-between py-3">
+                            <span class="font-medium text-slate-400">Status:</span>
+                            <span class="text-gold-400 font-medium">Graduated</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-gold-400 flex items-center">
+                        <i class="fas fa-rocket mr-3"></i> My Journey
+                    </h3>
+                    <p class="text-slate-300 mb-6 leading-relaxed">
+                        As a recent BSIT graduate, I have a solid foundation in software development, 
+                        database management, and system analysis. My studies have given me technical skills and 
+                        problem-solving abilities that I am eager to apply in real-world projects.
+                    </p>
+                    <p class="text-slate-300 mb-8 leading-relaxed">
+                        I am passionate about creating efficient, user-friendly solutions and 
+                        continuously learning new technologies. 
+                        I believe technology can transform businesses and improve people's lives.
+                    </p>
+                    
+                    <div class="bg-gold-900/20 p-4 rounded-lg border border-gold-500/30">
+                        <h4 class="font-semibold text-gold-400 mb-2">My Mission</h4>
+                        <p class="text-slate-300 text-sm">
+                           To use my technical skills and creativity to develop solutions 
+                           that solve problems and make a positive impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 gradient-bg relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">Technical Skills</h2>
+            <p class="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+                Skills I bring to help your company succeed.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Programming Card -->
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                    <div class="text-gold-400 mb-4 flex justify-between items-center">
+                        <i class="fas fa-code text-3xl"></i>
+                        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
+                            <span class="text-gold-400 font-bold">75%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3 text-slate-100">Programming</h3>
+                    <p class="text-slate-400 mb-4">Strong foundation in multiple programming languages</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">Java</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">Python</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-3 rounded-full border border-gold-500/30">JavaScript</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">C#</span>
+                    </div>
+                </div>
+                
+                <!-- Web Development Card -->
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                    <div class="text-gold-400 mb-4 flex justify-between items-center">
+                        <i class="fas fa-laptop-code text-3xl"></i>
+                        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
+                            <span class="text-gold-400 font-bold">85%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3 text-slate-100">Web Development</h3>
+                    <p class="text-slate-400 mb-4">Building responsive and interactive web experiences</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">HTML</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">CSS</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">JavaScript</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">C#</span>
+                    </div>
+                </div>
+                
+                <!-- Database Management Card -->
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                    <div class="text-gold-400 mb-4 flex justify-between items-center">
+                        <i class="fas fa-database text-3xl"></i>
+                        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
+                            <span class="text-gold-400 font-bold">70%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3 text-slate-100">Database Management</h3>
+                    <p class="text-slate-400 mb-4">Designing and managing efficient data storage solutions</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">MongoDB</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">SQL Server</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">MySQL</span>
+                    </div>
+                </div>
+                
+                <!-- Other Skills Card -->
+                <div class="skill-card gradient-border p-6 rounded-xl shadow-sm transition-all duration-300">
+                    <div class="text-gold-400 mb-4 flex justify-between items-center">
+                        <i class="fas fa-tools text-3xl"></i>
+                        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center">
+                            <span class="text-gold-400 font-bold">65%</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3 text-slate-100">Other Skills</h3>
+                    <p class="text-slate-400 mb-4">Additional competencies that enhance my technical profile</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">Excel Systems</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">Data Encoding</span>
+                        <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">System Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 gradient-bg-reverse relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">Featured Projects</h2>
+            <p class="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+               A showcase of my recent projects.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                        <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                            <span class="text-4xl text-gold-300"><i class="fas fa-building"></i></span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">Website</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-slate-100">GB Construction Company Limited</h3>
+                        <p class="text-slate-400 mb-4 text-sm">
+                            A professional construction company website highlighting completed projects, offered services, and company profile.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">HTML</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">CSS</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">JavaScript</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-gold-400 text-sm font-medium hover:text-gold-300 transition-colors flex items-center">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/jncb14/mywebsite" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://gbclimited.netlify.app/" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                        <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                            <span class="text-4xl text-gold-300"><i class="fas fa-graduation-cap"></i></span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">System</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-slate-100">Inquiry Management with Enrollment System</h3>
+                        <p class="text-slate-400 mb-4 text-sm">
+                            A system for handling student inquiries and enrollment processes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">HTML</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">C#</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">CSS</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">JavaScript</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-gold-400 text-sm font-medium hover:text-gold-300 transition-colors flex items-center">
+                                View Details
+                                <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/jncb14/InquiryManagementApp2" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card gradient-border rounded-xl overflow-hidden shadow-md transition-all duration-300">
+                    <div class="h-48 overflow-hidden bg-gradient-to-br from-gold-500/20 to-gold-600/20 relative">
+                        <div class="w-full h-full bg-navy-700 flex items-center justify-center">
+                            <span class="text-4xl text-gold-300"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-gold-600 text-navy-900 text-xs px-2 py-1 rounded-full font-bold">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2 text-slate-100">Website for small business</h3>
+                        <p class="text-slate-400 mb-4 text-sm">
+                            An upcoming website.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">React</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">Node.js</span>
+                            <span class="bg-gold-900/30 text-gold-400 text-xs px-3 py-1 rounded-full border border-gold-500/30">MongoDB</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-gold-400 text-sm font-medium hover:text-gold-300 transition-colors flex items-center">
+                                Coming Soon
+                                <i class="fas fa-clock ml-1 text-xs"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-slate-400 hover:text-gold-400 transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-gold-400 hover:text-gold-300 transition-colors">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 gradient-bg relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-100">Say Hello</h2>
+            <p class="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+                Let's discuss how we can work together
+            </p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Contact Information -->
+                    <div class="gradient-border p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-6 text-gold-400">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-slate-300">Email</h4>
+                                    <p class="text-slate-400">joshuabaron8@example.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-slate-300">Phone</h4>
+                                    <p class="text-slate-400">+63 945 335 0508</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-slate-300">Location</h4>
+                                    <p class="text-slate-400">Cavite, Philippines</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium text-slate-300 mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/jncb14" class="w-10 h-10 rounded-full bg-navy-600 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://x.com/bazingga_i" class="w-10 h-10 rounded-full bg-navy-600 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.facebook.com/bazingga.fami/" class="w-10 h-10 rounded-full bg-navy-600 flex items-center justify-center hover:bg-gold-600 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="gradient-border p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-6 text-gold-400">Send a Message</h3>
+                        
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-slate-300 mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-navy-600 border border-navy-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-slate-100 placeholder-slate-400" placeholder="Your name">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-slate-300 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-navy-600 border border-navy-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-slate-100 placeholder-slate-400" placeholder="your.email@example.com">
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-slate-300 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 bg-navy-600 border border-navy-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-slate-100 placeholder-slate-400" placeholder="Project discussion">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-slate-300 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 bg-navy-600 border border-navy-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 text-slate-100 placeholder-slate-400" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 px-6 py-3 rounded-lg w-full hover:from-gold-600 hover:to-gold-700 transition-colors flex items-center justify-center glow">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-slate-400 py-8 border-t border-navy-700/50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-6 h-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 flex items-center justify-center">
+                            <span class="text-navy-900 text-xs font-bold">J</span>
+                        </div>
+                        <span class="font-bold text-slate-300">Joshua Nicole C. Baron</span>
+                    </div>
+                    <p class="text-sm mt-1">IT Graduate & Web Developer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="hover:text-gold-400 transition-colors">Home</a>
+                    <a href="#about" class="hover:text-gold-400 transition-colors">About</a>
+                    <a href="#projects" class="hover:text-gold-400 transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-navy-700/50 mt-6 pt-6 text-center text-sm">
+                <p>&copy; 2025 Joshua Nicole C. Baron. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900 shadow-lg hover:from-gold-600 hover:to-gold-700 transition-colors hidden glow">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
