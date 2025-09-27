@@ -767,9 +767,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">Java Certification</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('java_cert.pdf')">
+                            <a href="java_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -788,9 +788,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">SAP Certification</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('sap_cert.pdf')">
+                            <a href="sap_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -809,9 +809,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">System Analysis</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('system_ads_cert.pdf')">
+                            <a href="system_ads_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -833,9 +833,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">Web Development</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('web_dev_cert.pdf')">
+                            <a href="web_dev_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -854,9 +854,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">Database Management</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('db_cert.pdf')">
+                            <a href="db_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -875,9 +875,9 @@
                         <div class="text-white text-center">
                             <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
                             <h4 class="font-bold text-xl mb-4">Cybersecurity</h4>
-                            <button class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors" onclick="event.stopPropagation(); openPdf('cyber_cert.pdf')">
+                            <a href="cyber_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
                                 View PDF
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -891,21 +891,6 @@
             </div>
         </div>
     </section>
-
-    <!-- PDF Modal -->
-    <div id="pdf-modal" class="pdf-modal">
-        <div class="pdf-modal-content">
-            <div class="pdf-modal-header">
-                <h3 id="pdf-title" class="text-white font-semibold">Certificate</h3>
-                <button id="close-pdf" class="text-primary-gold hover:text-primary-red text-xl">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="pdf-modal-body">
-                <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
 
     <!-- CV Modal -->
     <div id="cv-modal" class="cv-modal">
@@ -1271,48 +1256,6 @@
                     });
                 }
             });
-        });
-        
-        // PDF Modal functionality
-        function openPdf(pdfFile) {
-            const modal = document.getElementById('pdf-modal');
-            const viewer = document.getElementById('pdf-viewer');
-            const title = document.getElementById('pdf-title');
-            
-            // Set the PDF file to display
-            viewer.src = pdfFile;
-            
-            // Set the title based on the PDF file
-            if (pdfFile === 'java_cert.pdf') {
-                title.textContent = 'Java Certification';
-            } else if (pdfFile === 'sap_cert.pdf') {
-                title.textContent = 'SAP Certification';
-            } else if (pdfFile === 'system_ads_cert.pdf') {
-                title.textContent = 'System Analysis Certificate';
-            } else if (pdfFile === 'web_dev_cert.pdf') {
-                title.textContent = 'Web Development Certificate';
-            } else if (pdfFile === 'db_cert.pdf') {
-                title.textContent = 'Database Management Certificate';
-            } else if (pdfFile === 'cyber_cert.pdf') {
-                title.textContent = 'Cybersecurity Certificate';
-            }
-            
-            // Show the modal
-            modal.style.display = 'flex';
-        }
-        
-        // Close PDF modal
-        document.getElementById('close-pdf').addEventListener('click', function() {
-            document.getElementById('pdf-modal').style.display = 'none';
-            document.getElementById('pdf-viewer').src = '';
-        });
-        
-        // Close modal when clicking outside the content
-        document.getElementById('pdf-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-                document.getElementById('pdf-viewer').src = '';
-            }
         });
         
         // CV Modal functionality
