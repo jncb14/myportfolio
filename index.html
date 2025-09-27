@@ -114,45 +114,24 @@
             pointer-events: none;
         }
         
-        /* Card styles */
-        .portfolio-card {
+        /* Certificate card styles */
+        .certificate-card {
             width: 100%;
-            height: 300px;
+            height: 350px;
             border-radius: 12px;
             position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-            cursor: pointer;
-            perspective: 1000px;
-        }
-        
-        .portfolio-card.flipped {
-            transform: rotateY(180deg);
-        }
-        
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .card-front {
             background: linear-gradient(135deg, #1a2332, #0f1929);
             border: 2px solid #ffc107;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .card-back {
-            background: linear-gradient(135deg, #d32f2f, #8b0000);
-            transform: rotateY(180deg);
-            border: 2px solid #ffc107;
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
         
         /* Glowing border */
@@ -213,51 +192,6 @@
             justify-content: center;
             margin-right: 15px;
             font-size: 18px;
-        }
-        
-        /* PDF Modal */
-        .pdf-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .pdf-modal-content {
-            width: 80%;
-            height: 80%;
-            background: #1a2332;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 193, 7, 0.5);
-        }
-        
-        .pdf-modal-header {
-            background: #0f1929;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ffc107;
-        }
-        
-        .pdf-modal-body {
-            height: calc(100% - 60px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .pdf-modal-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
         }
         
         /* CV Modal */
@@ -350,13 +284,8 @@
         
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .portfolio-card {
-                height: 250px;
-            }
-            
-            .pdf-modal-content, .cv-modal-content {
-                width: 95%;
-                height: 70%;
+            .certificate-card {
+                height: 300px;
             }
             
             .cv-modal-content {
@@ -754,63 +683,54 @@
             
             <div class="grid md:grid-cols-3 gap-8" id="certificates-container">
                 <!-- Certificate 1 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-gold text-4xl mb-4">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-gold">Java Certification</h3>
-                        <p class="text-gray-300 text-center mt-4">Java Programming Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-gold font-bold">J</div>
+                <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-award text-6xl text-primary-gold"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">Java Certification</h4>
-                            <a href="java_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-gold mb-2">Java Certification</h3>
+                            <p class="text-gray-300 text-center mb-4">Java Programming Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="java_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Certificate 2 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-red text-4xl mb-4">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-red">SAP Certification</h3>
-                        <p class="text-gray-300 text-center mt-4">SAP Software Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-red font-bold">S</div>
+                <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-certificate text-6xl text-primary-red"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">SAP Certification</h4>
-                            <a href="sap_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-red mb-2">SAP Certification</h3>
+                            <p class="text-gray-300 text-center mb-4">SAP Software Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="sap_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Certificate 3 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-green text-4xl mb-4">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-green">System Analysis</h3>
-                        <p class="text-gray-300 text-center mt-4">System Analysis & Design Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-green font-bold">A</div>
+                <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-6xl text-primary-green"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">System Analysis</h4>
-                            <a href="system_ads_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-green mb-2">System Analysis</h3>
+                            <p class="text-gray-300 text-center mb-4">System Analysis & Design Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="system_ads_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
@@ -820,67 +740,58 @@
             <!-- Hidden Certificates -->
             <div class="hidden-certificates grid md:grid-cols-3 gap-8 mt-8" id="hidden-certificates">
                 <!-- Additional Certificate 1 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-gold text-4xl mb-4">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-gold">Web Development</h3>
-                        <p class="text-gray-300 text-center mt-4">Advanced Web Development Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-gold font-bold">W</div>
+                <!-- <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-code text-6xl text-primary-gold"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">Web Development</h4>
-                            <a href="web_dev_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-gold mb-2">Web Development</h3>
+                            <p class="text-gray-300 text-center mb-4">Advanced Web Development Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="web_dev_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
-                <!-- Additional Certificate 2 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-red text-4xl mb-4">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-red">Database Management</h3>
-                        <p class="text-gray-300 text-center mt-4">SQL & Database Management Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-red font-bold">D</div>
+                <!-- Additional Certificate 2
+                <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-database text-6xl text-primary-red"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">Database Management</h4>
-                            <a href="db_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-red mb-2">Database Management</h3>
+                            <p class="text-gray-300 text-center mb-4">SQL & Database Management Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="db_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
-                <!-- Additional Certificate 3 -->
-                <div class="portfolio-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-front">
-                        <div class="text-primary-green text-4xl mb-4">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-center text-primary-green">Cybersecurity</h3>
-                        <p class="text-gray-300 text-center mt-4">Cybersecurity Fundamentals Certificate</p>
-                        <div class="absolute bottom-4 right-4 text-primary-green font-bold">C</div>
+                <!-- Additional Certificate 3
+                <div class="certificate-card glow-border">
+                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-6xl text-primary-green"></i>
                     </div>
-                    <div class="card-back">
-                        <div class="text-white text-center">
-                            <i class="fas fa-file-pdf text-4xl mb-4 text-primary-gold"></i>
-                            <h4 class="font-bold text-xl mb-4">Cybersecurity</h4>
-                            <a href="cyber_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block" onclick="event.stopPropagation();">
-                                View PDF
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-xl font-bold text-center text-primary-green mb-2">Cybersecurity</h3>
+                            <p class="text-gray-300 text-center mb-4">Cybersecurity Fundamentals Certificate</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="cyber_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
+                                <i class="fas fa-file-pdf mr-2"></i> View PDF
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             
             <div class="text-center mt-12">
@@ -925,8 +836,8 @@
                             <p class="font-medium text-primary-gold">Technical Skills:</p>
                             <ul class="list-disc list-inside ml-4">
                                 <li>Web Development (HTML, CSS, JavaScript)</li>
-                                <li>Programming (Python, Java)</li>
-                                <li>Database Management (MySQL)</li>
+                                <li>Programming (Python, Java, C#)</li>
+                                <li>Database Management (SSMS)</li>
                                 <li>System Analysis & Design</li>
                             </ul>
                         </div>
@@ -936,7 +847,7 @@
                                 <li>Problem Solving</li>
                                 <li>Team Collaboration</li>
                                 <li>Adaptability</li>
-                                <li>Creative Thinking</li>
+                                <li>Leadership</li>
                             </ul>
                         </div>
                     </div>
@@ -950,7 +861,7 @@
                             <p class="text-sm text-gray-300">A professional website showcasing company services and projects.</p>
                         </div>
                         <div>
-                            <h5 class="font-medium text-white">Inquiry & Enrollment System</h5>
+                            <h5 class="font-medium text-white">Inquiry Management with Enrollment System</h5>
                             <p class="text-sm text-gray-300">A comprehensive system for handling student inquiries and enrollment processes.</p>
                         </div>
                         <div>
@@ -1113,7 +1024,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-white">Email</h4>
-                                    <p class="text-gray-400">joshuabaron8@example.com</p>
+                                    <p class="text-gray-400">joshuabaron8@gmail.com</p>
                                 </div>
                             </div>
                             
@@ -1133,7 +1044,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-white">Location</h4>
-                                    <p class="text-gray-400">Cavite, Philippines</p>
+                                    <p class="text-gray-400">Tanza Cavite, Philippines</p>
                                 </div>
                             </div>
                         </div>
@@ -1301,25 +1212,6 @@
                 hiddenCertificates.style.display = 'none';
                 button.innerHTML = '<span>View All Certificates</span><i class="fas fa-arrow-down ml-2"></i>';
             }
-        });
-        
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-slide-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements to animate
-        document.querySelectorAll('.portfolio-card, .glow-border').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
