@@ -480,6 +480,113 @@
             -webkit-text-fill-color: transparent;
             animation: gradientShift 8s ease infinite;
         }
+        
+        /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(26, 35, 50, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .music-player:hover {
+            width: 200px;
+            border-radius: 30px;
+        }
+        
+        .music-player.expanded {
+            width: 200px;
+            border-radius: 30px;
+        }
+        
+        .music-player-content {
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            width: 100%;
+        }
+        
+        .music-player-icon {
+            font-size: 24px;
+            color: #ffc107;
+            flex-shrink: 0;
+        }
+        
+        .music-player-controls {
+            display: none;
+            align-items: center;
+            margin-left: 10px;
+            width: 100%;
+        }
+        
+        .music-player:hover .music-player-controls,
+        .music-player.expanded .music-player-controls {
+            display: flex;
+        }
+        
+        .volume-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            margin: 0 10px;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ffc107;
+            cursor: pointer;
+        }
+        
+        .music-player-info {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(26, 35, 50, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #ffc107;
+            display: none;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            max-width: 200px;
+            text-align: center;
+        }
+        
+        .music-player:hover .music-player-info,
+        .music-player.expanded .music-player-info {
+            display: block;
+        }
+        
+        /* Hidden YouTube embed */
+        .youtube-audio {
+            position: fixed;
+            top: -1000px;
+            left: -1000px;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-primary-dark text-white font-body">
@@ -496,6 +603,40 @@
 
     <!-- Particle Background -->
     <div id="particles-js"></div>
+
+    <!-- Hidden YouTube Audio Embed -->
+    <div class="youtube-audio">
+        <iframe id="youtube-audio-player" 
+                width="0" 
+                height="0" 
+                src="https://www.youtube.com/embed/eQVB-7QakTA?autoplay=0&loop=1&playlist=eQVB-7QakTA&enablejsapi=1" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <div class="music-player-content">
+            <div class="music-player-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="music-player-controls">
+                <button id="music-toggle" class="text-primary-gold hover:text-primary-red transition-colors">
+                    <i class="fas fa-play" id="play-icon"></i>
+                </button>
+                <input type="range" min="0" max="100" value="30" class="volume-slider" id="volume-slider">
+                <button id="music-info" class="text-primary-gold hover:text-primary-red transition-colors">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+            </div>
+        </div>
+        <div class="music-player-info">
+            Background Music: "One Direction - Night Changes"<br>
+            Volume: <span id="volume-display">30%</span>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-primary-navy/90 backdrop-blur-md border-b border-primary-gold/30">
@@ -1432,6 +1573,86 @@
                 }
             }
         }
+
+        // YouTube Music Player Functionality
+        const musicPlayer = document.getElementById('music-player');
+        const musicToggle = document.getElementById('music-toggle');
+        const playIcon = document.getElementById('play-icon');
+        const volumeSlider = document.getElementById('volume-slider');
+        const volumeDisplay = document.getElementById('volume-display');
+        const youtubePlayer = document.getElementById('youtube-audio-player');
+        const musicInfo = document.getElementById('music-info');
+
+        let player;
+        let isPlaying = false;
+
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // YouTube API callback
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-audio-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        function onPlayerReady(event) {
+            // Set initial volume
+            player.setVolume(50);
+            // Music will start when user clicks play
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                isPlaying = false;
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            }
+        }
+
+        // Music toggle functionality
+        musicToggle.addEventListener('click', function() {
+            if (!isPlaying) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
+        });
+
+        // Volume control
+        volumeSlider.addEventListener('input', function() {
+            player.setVolume(this.value);
+            volumeDisplay.textContent = this.value + '%';
+        });
+
+        // Toggle music player expanded state
+        musicPlayer.addEventListener('click', function(e) {
+            if (e.target === musicPlayer || e.target === musicPlayer.querySelector('.music-player-icon')) {
+                musicPlayer.classList.toggle('expanded');
+            }
+        });
+
+        // Music info button
+        musicInfo.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Info is already shown on hover, but we can add additional functionality if needed
+        });
+
+        // Autoplay music with user interaction
+        document.addEventListener('click', function initMusic() {
+            // We'll let the user manually start the music to respect autoplay policies
+            document.removeEventListener('click', initMusic);
+        });
     </script>
 </body>
 </html>
