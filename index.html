@@ -134,25 +134,11 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
         
-        /* Glowing border */
+        /* Glowing border - removed for certificates */
         .glow-border {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-        }
-        
-        .glow-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ffc107, #d32f2f, #ffc107);
-            border-radius: 17px;
-            z-index: -1;
-            opacity: 0.7;
-            filter: blur(5px);
         }
         
         /* Neon text effect */
@@ -209,8 +195,9 @@
         }
         
         .cv-modal-content {
-            width: 60%;
-            max-width: 800px;
+            width: 80%;
+            max-width: 900px;
+            height: 90vh;
             background: #1a2332;
             border-radius: 10px;
             overflow: hidden;
@@ -227,9 +214,15 @@
         }
         
         .cv-modal-body {
-            padding: 20px;
-            max-height: 70vh;
-            overflow-y: auto;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .cv-pdf-container {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         /* Custom logo styling */
@@ -290,7 +283,14 @@
             
             .cv-modal-content {
                 width: 95%;
+                height: 80vh;
             }
+        }
+        
+        /* Justified text for My Journey section */
+        .journey-text {
+            text-align: justify;
+            text-justify: inter-word;
         }
     </style>
 </head>
@@ -476,7 +476,7 @@
                         </div>
                         <div class="flex justify-between py-3">
                             <span class="font-medium text-gray-400">Status:</span>
-                            <span class="text-primary-gold font-semibold">Graduated</span>
+                            <span class="text-primary-gold font-semibold">Bachelor</span>
                         </div>
                     </div>
                 </div>
@@ -485,22 +485,24 @@
                     <h3 class="text-2xl font-semibold mb-6 text-primary-gold flex items-center">
                         <i class="fas fa-rocket mr-3"></i> My Journey
                     </h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        As a recent BSIT graduate, I have a solid foundation in software development, 
-                        database management, and system analysis. My studies have equipped me with technical skills and 
-                        problem-solving abilities that I am eager to apply in real-world projects.
+                    <p class="text-gray-300 mb-6 leading-relaxed journey-text">
+                        It wasn't easy for me, especially during my first year, since I had no background in programming. 
+                        But those challenging experiences gave me the motivation to focus and improve my coding skills. 
+                        For example, we started with small projects like creating simple games.
+                        In the following years, we worked on more complex projects, such as building a website within a 
+                        month—coming up with our own ideas, designs, and implementations.
                     </p>
-                    <p class="text-gray-300 mb-8 leading-relaxed">
-                        I am passionate about creating efficient, user-friendly solutions and 
-                        continuously learning new technologies. I believe that technology has the power to 
-                        transform businesses and improve people's lives in meaningful ways.
+                    <p class="text-gray-300 mb-8 leading-relaxed journey-text">
+                        During my final year as a student, I had both the most challenging and the most rewarding 
+                        experiences as a programmer. I was able to further enhance my programming skills. Although I 
+                        know I still have a lot to learn, I can clearly see the improvement I've made.
                     </p>
                     
                     <div class="bg-primary-red/20 p-4 rounded-lg border border-primary-gold/30">
                         <h4 class="font-semibold text-primary-gold mb-2">My Mission</h4>
-                        <p class="text-gray-300 text-sm">
-                            To leverage my technical expertise and creative thinking to develop innovative solutions 
-                            that address real-world challenges and make a positive impact.
+                        <p class="text-gray-300 text-sm journey-text">
+                            Continuously improve my skills and expand my knowledge in areas of 
+                            programming that I have yet to explore.
                         </p>
                     </div>
                 </div>
@@ -526,11 +528,11 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-database text-primary-green text-2xl"></i>
-                            <span class="text-white">MySQL</span>
+                            <span class="text-white">SSMS</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fab fa-git-alt text-primary-red text-2xl"></i>
-                            <span class="text-white">Git</span>
+                            <i class="fab fa-cuttlefish text-blue-600 text-2xl"></i>
+                            <span class="text-white">C#</span>
                         </div>
                     </div>
                     
@@ -678,12 +680,12 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Certificates</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                My achievements and certifications in the field of Information Technology
+                My certifications in the field of Information Technology
             </p>
             
             <div class="grid md:grid-cols-3 gap-8" id="certificates-container">
                 <!-- Certificate 1 -->
-                <div class="certificate-card glow-border">
+                <div class="certificate-card">
                     <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
                         <i class="fas fa-award text-6xl text-primary-gold"></i>
                     </div>
@@ -701,7 +703,7 @@
                 </div>
                 
                 <!-- Certificate 2 -->
-                <div class="certificate-card glow-border">
+                <div class="certificate-card">
                     <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
                         <i class="fas fa-certificate text-6xl text-primary-red"></i>
                     </div>
@@ -719,7 +721,7 @@
                 </div>
                 
                 <!-- Certificate 3 -->
-                <div class="certificate-card glow-border">
+                <div class="certificate-card">
                     <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
                         <i class="fas fa-graduation-cap text-6xl text-primary-green"></i>
                     </div>
@@ -736,70 +738,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Hidden Certificates -->
-            <!-- <div class="hidden-certificates grid md:grid-cols-3 gap-8 mt-8" id="hidden-certificates"> -->
-                <!-- Additional Certificate 1 -->
-                <!-- <div class="certificate-card glow-border">
-                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
-                        <i class="fas fa-code text-6xl text-primary-gold"></i>
-                    </div>
-                    <div class="p-6 flex flex-col justify-between flex-grow">
-                        <div>
-                            <h3 class="text-xl font-bold text-center text-primary-gold mb-2">Web Development</h3>
-                            <p class="text-gray-300 text-center mb-4">Advanced Web Development Certificate</p>
-                        </div>
-                        <div class="text-center">
-                            <a href="web_dev_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-                
-                <!-- Additional Certificate 2
-                <div class="certificate-card glow-border">
-                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
-                        <i class="fas fa-database text-6xl text-primary-red"></i>
-                    </div>
-                    <div class="p-6 flex flex-col justify-between flex-grow">
-                        <div>
-                            <h3 class="text-xl font-bold text-center text-primary-red mb-2">Database Management</h3>
-                            <p class="text-gray-300 text-center mb-4">SQL & Database Management Certificate</p>
-                        </div>
-                        <div class="text-center">
-                            <a href="db_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-                
-                <!-- Additional Certificate 3
-                <div class="certificate-card glow-border">
-                    <div class="h-40 bg-gradient-to-br from-primary-gold/20 to-primary-red/20 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-6xl text-primary-green"></i>
-                    </div>
-                    <div class="p-6 flex flex-col justify-between flex-grow">
-                        <div>
-                            <h3 class="text-xl font-bold text-center text-primary-green mb-2">Cybersecurity</h3>
-                            <p class="text-gray-300 text-center mb-4">Cybersecurity Fundamentals Certificate</p>
-                        </div>
-                        <div class="text-center">
-                            <a href="cyber_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-            <!-- </div> -->
-            
-            <!-- <div class="text-center mt-12">
-                <button id="view-all-certificates" class="inline-flex items-center text-primary-gold hover:text-primary-red transition-colors font-semibold bg-primary-navy/80 px-6 py-3 rounded-lg">
-                    <span>View All Certificates</span>
-                    <i class="fas fa-arrow-down ml-2"></i>
-                </button>
-            </div> -->
         </div>
     </section>
 
@@ -813,63 +751,7 @@
                 </button>
             </div>
             <div class="cv-modal-body">
-                <div class="bg-primary-dark/50 p-6 rounded-lg mb-6">
-                    <h4 class="text-xl font-semibold text-primary-gold mb-4">Personal Information</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <p><span class="font-medium text-primary-gold">Name:</span> Joshua Nicole C. Baron</p>
-                            <p><span class="font-medium text-primary-gold">Age:</span> 23 years old</p>
-                            <p><span class="font-medium text-primary-gold">Birthday:</span> November 14, 2001</p>
-                        </div>
-                        <div>
-                            <p><span class="font-medium text-primary-gold">Education:</span> BS in Information Technology</p>
-                            <p><span class="font-medium text-primary-gold">Year Graduated:</span> 2025</p>
-                            <p><span class="font-medium text-primary-gold">Status:</span> Graduated</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-primary-dark/50 p-6 rounded-lg mb-6">
-                    <h4 class="text-xl font-semibold text-primary-gold mb-4">Skills</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <p class="font-medium text-primary-gold">Technical Skills:</p>
-                            <ul class="list-disc list-inside ml-4">
-                                <li>Web Development (HTML, CSS, JavaScript)</li>
-                                <li>Programming (Python, Java, C#)</li>
-                                <li>Database Management (SSMS)</li>
-                                <li>System Analysis & Design</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p class="font-medium text-primary-gold">Soft Skills:</p>
-                            <ul class="list-disc list-inside ml-4">
-                                <li>Problem Solving</li>
-                                <li>Team Collaboration</li>
-                                <li>Adaptability</li>
-                                <li>Leadership</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-primary-dark/50 p-6 rounded-lg">
-                    <h4 class="text-xl font-semibold text-primary-gold mb-4">Projects</h4>
-                    <div class="space-y-4">
-                        <div>
-                            <h5 class="font-medium text-white">GB Construction Company Limited Website</h5>
-                            <p class="text-sm text-gray-300">A professional website showcasing company services and projects.</p>
-                        </div>
-                        <div>
-                            <h5 class="font-medium text-white">Inquiry Management with Enrollment System</h5>
-                            <p class="text-sm text-gray-300">A comprehensive system for handling student inquiries and enrollment processes.</p>
-                        </div>
-                        <div>
-                            <h5 class="font-medium text-white">E-commerce Website (In Progress)</h5>
-                            <p class="text-sm text-gray-300">An upcoming e-commerce platform for small businesses.</p>
-                        </div>
-                    </div>
-                </div>
+                <iframe src="images/CV.pdf" class="cv-pdf-container" frameborder="0"></iframe>
             </div>
             <div class="cv-modal-header border-t border-primary-gold/30">
                 <button id="download-cv" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors">
@@ -884,7 +766,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Featured Projects</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                A showcase of my recent projects and accomplishments
+                A showcase of my recent projects 
             </p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -936,7 +818,7 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-white">Inquiry & Enrollment System</h3>
+                        <h3 class="font-bold text-xl mb-2 text-white">Inquiry Managemen with Enrollment System</h3>
                         <p class="text-gray-300 mb-4 text-sm">
                             A comprehensive system for handling student inquiries and enrollment processes.
                         </p>
@@ -1008,7 +890,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Find Me</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                Let's connect and discuss how we can work together
+                Let's discuss how we can work together
             </p>
             
             <div class="max-w-4xl mx-auto">
@@ -1080,7 +962,7 @@
                             </iframe>
                         </div>
                         <p class="text-gray-400 text-sm text-center">
-                            Cavite, Philippines - My current location
+                            Tanza, Cavite Philippines
                         </p>
                     </div>
                 </div>
@@ -1191,27 +1073,10 @@
             // Create a temporary link to trigger download
             const link = document.createElement('a');
             link.href = 'images/CV.pdf'; // Replace with actual CV file path
-            link.download = 'images/CV.pdf';
+            link.download = 'Joshua_Baron_CV.pdf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            // Close the modal after download
-            document.getElementById('cv-modal').style.display = 'none';
-        });
-        
-        // View All Certificates functionality
-        document.getElementById('view-all-certificates').addEventListener('click', function() {
-            const hiddenCertificates = document.getElementById('hidden-certificates');
-            const button = document.getElementById('view-all-certificates');
-            
-            if (hiddenCertificates.style.display === 'none' || hiddenCertificates.style.display === '') {
-                hiddenCertificates.style.display = 'grid';
-                button.innerHTML = '<span>Show Less Certificates</span><i class="fas fa-arrow-up ml-2"></i>';
-            } else {
-                hiddenCertificates.style.display = 'none';
-                button.innerHTML = '<span>View All Certificates</span><i class="fas fa-arrow-down ml-2"></i>';
-            }
         });
     </script>
 </body>
