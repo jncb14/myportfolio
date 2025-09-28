@@ -34,7 +34,9 @@
                         'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
                         'typing': 'typing 3.5s steps(40, end)',
                         'blink-caret': 'blink-caret .75s step-end infinite',
-                        'geometric-move': 'geometric-move 20s linear infinite'
+                        'geometric-move': 'geometric-move 20s linear infinite',
+                        'float-slow': 'float-slow 8s ease-in-out infinite',
+                        'fade-in': 'fade-in 1.5s ease-out forwards'
                     },
                     keyframes: {
                         'slide-in': {
@@ -44,6 +46,11 @@
                         'float': {
                             '0%': { transform: 'translateY(0px) rotate(0deg)' },
                             '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                            '100%': { transform: 'translateY(0px) rotate(0deg)' }
+                        },
+                        'float-slow': {
+                            '0%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(3deg)' },
                             '100%': { transform: 'translateY(0px) rotate(0deg)' }
                         },
                         'pulse-glow': {
@@ -61,6 +68,10 @@
                         'geometric-move': {
                             '0%': { transform: 'translateX(0) translateY(0)' },
                             '100%': { transform: 'translateX(100px) translateY(50px)' }
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
                         }
                     }
                 }
@@ -93,6 +104,110 @@
             100% {
                 background-position: 0% 50%;
             }
+        }
+        
+        /* Enhanced Background Layers */
+        .bg-layers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .bg-layer-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(211, 47, 47, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 40% 40%, rgba(46, 125, 50, 0.03) 0%, transparent 20%);
+            animation: float-slow 15s ease-in-out infinite;
+        }
+        
+        .bg-layer-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, rgba(255,255,255,0.02) 0%, transparent 10%),
+                linear-gradient(60deg, rgba(255,255,255,0.02) 0%, transparent 10%),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 10%);
+            background-size: 50px 50px;
+            animation: geometric-move 60s linear infinite;
+        }
+        
+        .bg-layer-3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 193, 7, 0.02) 50px,
+                    rgba(255, 193, 7, 0.02) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(211, 47, 47, 0.02) 50px,
+                    rgba(211, 47, 47, 0.02) 51px
+                );
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        /* Floating geometric shapes */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1), transparent);
+            filter: blur(10px);
+            animation: float-slow 15s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+        
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            right: 5%;
+            animation-delay: 9s;
         }
         
         /* Particle container */
@@ -325,6 +440,10 @@
                 width: 95%;
                 height: 80vh;
             }
+            
+            .floating-shape {
+                display: none;
+            }
         }
         
         /* Justified text for My Journey section */
@@ -346,9 +465,35 @@
             transform: translate(-50%, -50%);
             transition: opacity 0.3s, transform 0.3s;
         }
+        
+        /* Section animations */
+        .section-animate {
+            animation: fade-in 1.5s ease-out forwards;
+        }
+        
+        /* Enhanced gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, #ffc107, #d32f2f, #2e7d32);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 8s ease infinite;
+        }
     </style>
 </head>
 <body class="bg-primary-dark text-white font-body">
+    <!-- Enhanced Background Layers -->
+    <div class="bg-layers">
+        <div class="bg-layer-1"></div>
+        <div class="bg-layer-2"></div>
+        <div class="bg-layer-3"></div>
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
@@ -362,7 +507,7 @@
                         <i class="logo-icon logo-code fas fa-code"></i>
                         <i class="logo-icon logo-game fas fa-gamepad"></i>
                     </div>
-                    <div class="text-xl font-bold font-display neon-text">JNCB</div>
+                    <div class="text-xl font-bold font-display neon-text">Joshua Nicole</div>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
@@ -424,7 +569,7 @@
                     
                     <h1 class="text-5xl md:text-7xl font-bold font-display leading-tight">
                         <span class="text-white">Welcome to My</span><br>
-                        <span class="bg-gradient-to-r from-primary-gold to-primary-red bg-clip-text text-transparent">Developer Portfolio</span>
+                        <span class="gradient-text">Developer Portfolio</span>
                     </h1>
                     
                     <div class="typing-container text-xl text-gray-300 max-w-lg">
@@ -461,8 +606,8 @@
                         <div class="w-80 h-80 rounded-2xl overflow-hidden border-4 border-primary-gold shadow-2xl floating-element">
                             <div class="w-full h-full bg-primary-navy flex items-center justify-center">
                                 <div class="text-center">
-                                    <span class="text-6xl font-bold text-primary-gold font-display block">JN</span>
-                                    <span class="text-primary-gold text-lg mt-2 block">Developer & Gamer</span>
+                                    <span class="text-6xl font-bold text-primary-gold font-display block">Joshua Nicole</span>
+                                    <span class="text-primary-gold text-lg mt-2 block">Developer</span>
                                 </div>
                             </div>
                         </div>
@@ -491,11 +636,11 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20">
+    <section id="about" class="py-20 section-animate">
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">About Me</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                Get to know more about my background, education, and passion for technology
+                <!--     -->
             </p>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -538,7 +683,7 @@
                     <p class="text-gray-300 mb-6 leading-relaxed journey-text">
                         It wasn't easy for me, especially during my first year, since I had no background in programming. 
                         But those challenging experiences gave me the motivation to focus and improve my coding skills. 
-                        For example, we started with small projects like creating simple games.
+                        We started with small projects like creating simple games.
                         In the following years, we worked on more complex projects, such as building a website within a 
                         month—coming up with our own ideas, designs, and implementations.
                     </p>
@@ -641,11 +786,11 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 geometric-bg">
+    <section id="skills" class="py-20 geometric-bg section-animate">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Technical Skills</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                The skills I bring to help your organization succeed
+                <!-- The skills I bring to help your organization succeed -->
             </p>
             
             <div class="max-w-4xl mx-auto bg-primary-navy/80 backdrop-blur-md rounded-2xl p-8 glow-border">
@@ -663,7 +808,7 @@
                         
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white font-semibold">Web Development</span>
+                                <span class="text-white font-semibold">Data Analysis</span>
                                 <span class="text-primary-gold font-bold">85%</span>
                             </div>
                             <div class="w-full bg-primary-dark rounded-full h-3">
@@ -685,7 +830,7 @@
                     <div class="space-y-6">
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white font-semibold">System Analysis</span>
+                                <span class="text-white font-semibold">Web Development</span>
                                 <span class="text-primary-gold font-bold">65%</span>
                             </div>
                             <div class="w-full bg-primary-dark rounded-full h-3">
@@ -695,7 +840,7 @@
                         
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white font-semibold">Data Analysis</span>
+                                <span class="text-white font-semibold">Excel</span>
                                 <span class="text-primary-gold font-bold">60%</span>
                             </div>
                             <div class="w-full bg-primary-dark rounded-full h-3">
@@ -726,7 +871,7 @@
     </section>
 
     <!-- Certificates Section -->
-    <section id="certificates" class="py-20">
+    <section id="certificates" class="py-20 section-animate">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Certificates</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
@@ -742,11 +887,11 @@
                     <div class="p-6 flex flex-col justify-between flex-grow">
                         <div>
                             <h3 class="text-xl font-bold text-center text-primary-gold mb-2">Java Certification</h3>
-                            <p class="text-gray-300 text-center mb-4">Java Foundation Certificate</p>
+                            <p class="text-gray-300 text-center mb-4">Java Foundation</p>
                         </div>
                         <div class="text-center">
                             <a href="images/java_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
+                                <i class="fas fa-file-pdf mr-2"></i> View
                             </a>
                         </div>
                     </div>
@@ -764,7 +909,7 @@
                         </div>
                         <div class="text-center">
                             <a href="images/sap_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
+                                <i class="fas fa-file-pdf mr-2"></i> View
                             </a>
                         </div>
                     </div>
@@ -782,7 +927,7 @@
                         </div>
                         <div class="text-center">
                             <a href="images/system_ads_cert.pdf" target="_blank" class="bg-primary-gold text-primary-dark px-4 py-2 rounded-lg font-semibold hover:bg-primary-red transition-colors inline-block">
-                                <i class="fas fa-file-pdf mr-2"></i> View PDF
+                                <i class="fas fa-file-pdf mr-2"></i> View
                             </a>
                         </div>
                     </div>
@@ -795,7 +940,7 @@
     <div id="cv-modal" class="cv-modal">
         <div class="cv-modal-content">
             <div class="cv-modal-header">
-                <h3 class="text-white font-semibold">Joshua Nicole C. Baron - CV</h3>
+                <h3 class="text-white font-semibold">JNCB - CV</h3>
                 <button id="close-cv" class="text-primary-gold hover:text-primary-red text-xl">
                     <i class="fas fa-times"></i>
                 </button>
@@ -812,11 +957,11 @@
     </div>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 geometric-bg">
+    <section id="projects" class="py-20 geometric-bg section-animate">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Featured Projects</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
-                A showcase of my recent projects 
+                <!-- A showcase of my recent projects  -->
             </p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -839,6 +984,7 @@
                             <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">HTML</span>
                             <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">CSS</span>
                             <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">JavaScript</span>
+                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">GitHub</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <a href="https://gbclimited.netlify.app/" class="text-primary-gold text-sm font-medium hover:text-primary-red transition-colors flex items-center">
@@ -874,8 +1020,10 @@
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">C#</span>
-                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">SQL Server</span>
-                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">WinForms</span>
+                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">GitHub</span>
+                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">Azure</span>
+                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">CSS</span>
+                            <span class="bg-primary-red/30 text-primary-gold text-xs px-3 py-1 rounded-full">HTML</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <a href="#" class="text-primary-gold text-sm font-medium hover:text-primary-red transition-colors flex items-center">
@@ -927,16 +1075,16 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center text-primary-gold hover:text-primary-red transition-colors font-semibold">
+                <!-- <a href="#" class="inline-flex items-center text-primary-gold hover:text-primary-red transition-colors font-semibold">
                     <span>View All Projects</span>
                     <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+                </a> -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20">
+    <section id="contact" class="py-20 section-animate">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4 font-display">Find Me</h2>
             <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">
@@ -975,7 +1123,7 @@
                                     <i class="fas fa-map-marker-alt text-primary-gold text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-white">Location</h4>
+                                    <h4 class="font-medium text-white">My Address</h4>
                                     <p class="text-gray-400">Tanza Cavite, Philippines</p>
                                 </div>
                             </div>
@@ -1012,7 +1160,7 @@
                             </iframe>
                         </div>
                         <p class="text-gray-400 text-sm text-center">
-                            Tanza, Cavite Philippines
+                            Cavite Philippines
                         </p>
                     </div>
                 </div>
@@ -1031,7 +1179,7 @@
                             <i class="logo-icon logo-code fas fa-code"></i>
                             <i class="logo-icon logo-game fas fa-gamepad"></i>
                         </div>
-                        <span class="font-bold text-white font-display">Joshua Nicole C. Baron</span>
+                        <span class="font-bold text-white font-display">Joshua Nicole</span>
                     </div>
                     <p class="text-sm text-gray-400 mt-1">IT Graduate & Web Developer</p>
                 </div>
@@ -1044,7 +1192,7 @@
                 </div>
             </div>
             <div class="border-t border-primary-gold/30 mt-6 pt-6 text-center text-sm text-gray-400">
-                <p>&copy; 2025 Joshua Nicole C. Baron. All rights reserved.</p>
+                <p>&copy; 2025 Joshua Nicole All rights reserved.</p>
             </div>
         </div>
     </footer>
